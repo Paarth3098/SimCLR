@@ -141,10 +141,10 @@ if __name__ == '__main__':
 
     # args parser
     args = parser.parse_args()
-    dir = args.dir_path
+    #dir = args.dir_path
     feature_dim, temperature, k = args.feature_dim, args.temperature, args.k
     batch_size, epochs = args.batch_size, args.epochs
-    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
     print(device)
 
     # data prepare
@@ -161,7 +161,7 @@ if __name__ == '__main__':
         transforms.ToTensor(),
         transforms.Normalize([0.4914, 0.4822, 0.4465], [0.2023, 0.1994, 0.2010])])
 
-    data_dir = dir
+    data_dir = args.dir_path
     traindir = os.path.join(data_dir, 'train/')
     valdir = os.path.join('/media/neo/krypton/data/data_ptc/pouring_classification_data/ptc_dataset/', 'val/')
 
